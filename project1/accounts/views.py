@@ -1,6 +1,6 @@
-# Create your views here.
-import email
-from django.forms import PasswordInput
+# # Create your views here.
+# import email
+# from django.forms import PasswordInput
 from django.shortcuts import render
 from django.contrib.auth.models import User,auth
 from django.contrib.auth import authenticate, login,logout
@@ -8,73 +8,104 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from accounts.models import Institutions
-from . import models
+# from accounts.models import Institutions
+from . models import user_roles
 from django.http import HttpResponse
-from django.contrib.auth.hashers import make_password
-import hashlib 
-
+# from django.contrib.auth.hashers import make_password
+# import hashlib 
+from . decorators import unautheticated_user
 # Create your views here.
+
+user_id=1
 def home(request):
-    if 'inst_id' in request.session:
-        current_user = request.session['inst_id']
-        param = {'inst_id': current_user}
-        return render(request, 'index.html', param)
-    else:
-        return redirect('login')
-    #return render(request, 'choose.html') #why? 
+    return render(request,"index.html")
 
-def register(request):
-    if request.method=="POST":
-        inst_name = request.POST['inst_name']
-        inst_admin_name = request.POST['inst_admin_name']
-        inst_email = request.POST['inst_email']
-        inst_admin_email = request.POST['inst_admin_email']
-        inst_contact = request.POST['inst_contact']
-        inst_admin_contact = request.POST['inst_admin_contact']
-        inst_address = request.POST['inst_address']
-        passwd = request.POST['passwd']
-        confirm_passwd = request.POST['confirm_passwd']
-
-        en=Institutions(inst_name = inst_name, inst_admin_name = inst_admin_name, inst_email = inst_email, inst_admin_email = inst_admin_email, inst_contact = inst_contact, inst_admin_contact = inst_admin_contact, inst_address = inst_address, passwd = str(hashlib.md5(passwd.encode()).hexdigest()))
-        if passwd==confirm_passwd:
-           en.save()
-           return redirect('login')
-           print("valid")
-        else:
-            print("Invalid Password")
-        print("data has been written")
-    return render(request,"pages/examples/register.html")
-
-
-
-def handlelogin(request):
-    if request.method=='POST':
-        inst_email=request.POST['inst_email']
-        passwd=str(hashlib.md5(request.POST['passwd'].encode()).hexdigest())
-        data=models.Institutions.objects.filter(inst_email=inst_email,passwd=passwd).values()
-        print(data)
-        if data:
-            request.session['inst_id'] = data[0]['inst_id']
-            inst_id = request.session['inst_id']
-            param = {'inst_id': inst_id}
-            return render(request, 'index.html', param)
-        else:
-            return redirect('register')
-
-    return render(request, 'pages/examples/login.html')
- 
+@login_required(login_url='login')
 def admin_dashboard(request):
-    return render(request,'index.html')
+    return render(request,"admin_dashboard.html")
 
+@unautheticated_user
+def handlelogin(request):
+    global user_id
+    if request.method=="POST":
+      username=request.POST['username']
+      password = request.POST['password']
+      user=authenticate(request, username=username,password=password)
+      
+      if user is not None:
+        login(request,user)
+        user_info=User.objects.filter(username=username).values()
+        
+        user_id=user_info[0].get('id')
 
+        user_details=user_roles.objects.filter(user_id_id=user_id).values()
+        print(user_details)
+        user_role=user_details[0].get('role')
+        
+        print("valid")
+        if(user_role=='Student'):
+            return redirect('student_dashboard')
+        elif (user_role=='Admin'):
+            return redirect('admin_dashboard')
+        else:
+            return redirect('staff_dashboard')
+        #Home Page
+      else:
+        print("invalid")
+        #  messages.info(request,"Invalid Credentials")
+        return redirect('login')
+    else:
+      return render(request,"pages/examples/login.html")
+
+@login_required(login_url='login')
 def logout(request):
-    try:
-        del request.session['user']
-    except KeyError:
-        pass
-    return render(request,"choose.html")
+   auth.logout(request) 
+   return redirect("/")
 
-@login_required(login_url='login.html')
-def adminpaged(request):
-    return render(request,'adminpaged.html')
+
+
+@unautheticated_user
+def register(request):
+    global user_id
+    if request.method=="POST":
+       first_name=request.POST.get('first_name')
+       last_name=request.POST['last_name']
+       username=request.POST['username']
+       email=request.POST['email']
+       role=request.POST['role']
+       password = request.POST['password']
+       password2 = request.POST['password2']
+       if password==password2:
+            if User.objects.filter(username=username).exists():
+               print("Username taken")
+            else:
+               user=User.objects.create_user(username=username,password=password,email=email,first_name=first_name,last_name=last_name)
+               user.save()
+               
+               user_info=user_roles.objects.create(user_id=User.objects.latest('id'), role=role)
+               user_info.save()
+
+               print("User Created")
+               if(role=='Admin'):
+                return redirect('admin_dashboard')
+               elif (role=='Student'):
+                return redirect('login')
+               else :
+                return redirect('register')
+            return redirect('register')
+    # if role=="Admin":
+    #     return render(request,"templates/index.html") 
+    #     or redirect('admin_dashboard')
+    # elif role=="Teacher":
+    #     return render(request,"")
+    # else:
+    #     return render(request,"")
+
+    return render(request,"pages/examples/register.html")
+def student_dashboard(request):
+  return render(request,'student_dashboard.html')
+def staff_dashboard(request):
+  return render(request,'staff_dashboard.html')
+
+
+print(user_id)

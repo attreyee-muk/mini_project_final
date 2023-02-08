@@ -15,6 +15,19 @@
   <link rel="stylesheet" href="{% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+  <style>
+    .button_cont{
+      text-align: center;
+    }
+    .absdje{
+      width: 100px;
+      height: 100px;
+      border: 1px solid #ff8899;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
 </head>
 <body class="hold-transition register-page">
 <div class="register-box">
@@ -28,8 +41,9 @@
 
       <form action="/register" method="post">
         {% csrf_token %}
+        
         <div class="input-group mb-3">
-          <input type="text" class="form-control" id="inst_name" name="inst_name" placeholder="Institute Name">
+          <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter your firstname">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -37,31 +51,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="email" class="form-control" id="inst_email" name="inst_email" placeholder="Institute Email">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="number" class="form-control" id="inst_contact" name="inst_contact" placeholder="Institute Contact">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-phone-alt"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="textarea" row="3" class="form-control" id="inst_address" name="inst_address" placeholder="Institute Address">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-building"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" id="inst_admin_name" name="inst_admin_name" placeholder="Institute Admin Name">
+          <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter your lastname">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -69,23 +59,23 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="email" class="form-control" id="inst_admin_email" name="inst_admin_email" placeholder="Institute Admin Email">
+          <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username">
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+              <span class="fas fa-user"></span>
             </div>
           </div>
         </div>
-        <div class="input-group mb-3">
-          <input type="number" class="form-control" id="inst_admin_contact" name="inst_admin_contact" placeholder="Institute Admin Contact">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-phone-alt"></span>
+          <div class="input-group mb-3">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email id">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
             </div>
           </div>
-        </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" id="passwd" name="passwd" placeholder="Password">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -93,24 +83,23 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" id="confirm_passwd" name="confirm_passwd" placeholder="Retype password">
+          <input type="password" class="form-control" id="password2" name="password2" placeholder="Retype password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-              <label for="agreeTerms">
-               I agree to the <a href="#">terms</a>
-              </label>
-            </div>
-          </div>
+        <div class="absdje">
+          <select name="role" id="role">
+            <option value="Admin">Admin</option>
+            <option value="Student">Student</option>
+            <option value="Teacher">Teacher</option>
+          </select>
+        </div>
+        <hr>
           <!-- /.col -->
-          <div class="col-4">
+          <div class="button_cont">
             
             <button type="submit" class="btn btn-primary btn-block">Register</button>
           </div>
@@ -118,17 +107,6 @@
         </div>
       </form>
 
-      <div class="social-auth-links text-center">
-        <p>- OR -</p>
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i>
-          Sign up using Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i>
-          Sign up using Google+
-        </a>
-      </div>
 
       <a href="login.html" class="text-center">I already have a membership</a>
     </div>
