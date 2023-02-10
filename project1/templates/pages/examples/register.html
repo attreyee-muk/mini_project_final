@@ -19,13 +19,8 @@
     .button_cont{
       text-align: center;
     }
-    .absdje{
-      width: 100px;
-      height: 100px;
-      border: 1px solid #ff8899;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    select{
+      background: pink;
     }
   </style>
 </head>
@@ -90,7 +85,7 @@
             </div>
           </div>
         </div>
-        <div class="absdje">
+        <div class="r">
           <select name="role" id="role">
             <option value="Admin">Admin</option>
             <option value="Student">Student</option>
@@ -108,7 +103,7 @@
       </form>
 
 
-      <a href="login.html" class="text-center">I already have a membership</a>
+      <a href="{% url 'login' %}" class="text-center">I already have a membership</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->

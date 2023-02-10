@@ -18,7 +18,7 @@ def room(request):
         en=Room(room_id=room_id,room_desc=room_desc,room_label_abbr=room_label_abbr,room_seating_cap=room_seating_cap,room_type=room_type,user_id_id=user_id)
         en.save()
         
-    return render(request,"rooms.html",{
+    return render(request,"Room.html",{
         'data10':data10
     })
 # Create your views here.

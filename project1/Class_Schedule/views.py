@@ -5,7 +5,7 @@ from Slot.models import Slot
 from accounts.models import User
 from Class_Schedule.models import Class_Schedule
 
-def Class_Schedule(request):
+def Class_Schedules(request):
     user_id=request.user.id
     data3=Class_Schedule.objects.filter(user_id_id=user_id).values()
     if request.method=="POST":
@@ -21,7 +21,7 @@ def Class_Schedule(request):
         user_id=request.user.id
         en=Class_Schedule(cs_id=cs_id,status=status,user_id_id=user_id)
         en.save()
-    return render(request,"classSchedule.html",{
+    return render(request,"Class_Schedule.html",{
         'data3':data3
     })
 
