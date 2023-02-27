@@ -92,12 +92,12 @@ WSGI_APPLICATION = 'project1.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'time_table',
-        'USER':'newuser',
-        'PASSWORD':'password',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'project',
+        'USER':'root',
+        'PASSWORD':'project_123',
         'HOST':'127.0.0.1',
-        'PORT':'5432',
+        'PORT':'3306',
     }
 }
 
