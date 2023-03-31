@@ -1,6 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from Program.models import Program
+from university.models import University
+from course.models import Course
+from timetable.models import Timetable
+from TF_Min.models import TF_Min
+from Program_Revision.models import Program_Revision
+from timetable.models import Timetable
 # Create your models here.
 # class Institutions(models.Model):
 #     inst_id=models.AutoField(primary_key=True)
@@ -16,3 +22,6 @@ from django.contrib.auth.models import User
 class user_roles(models.Model):
     user_id=models.ForeignKey(User, on_delete=models.CASCADE)
     role=models.CharField(max_length=100)
+
+
+

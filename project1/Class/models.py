@@ -16,7 +16,7 @@ class Class(models.Model):
   class_parent_id=models.IntegerField()
   prog_rev_id=models.IntegerField()#ForeignKey
   prog_rev_id=models.ForeignKey(Program_Revision,null=True,on_delete=models.CASCADE)
-  prog_id=models.IntegerField()#ForeignKey
+  
   prog_id=models.ForeignKey(Program,null=True,on_delete=models.CASCADE)
   course_semester=models.IntegerField()
 

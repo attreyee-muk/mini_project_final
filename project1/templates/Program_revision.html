@@ -111,7 +111,7 @@
           <ul class="nav nav-treeview">
 
             <li class="nav-item">
-              <a href="{% url'admin_dashboard' %}" class="nav-link active">
+              <a  class="nav-link active">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Dashboard v1</p>
               </a>
@@ -204,6 +204,12 @@
                         <p>Program Revision</p>
                       </a>
                     </li>
+                    <li class="nav-item">
+                      <a href="{% url 'final' %}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Final Data</p>
+                      </a>
+                    </li>
       </ul>
       
     </nav>
@@ -260,60 +266,19 @@
               <form action="/prev" method="post">
                 {% csrf_token %}
                 <div class="card-body">
-
                   <div class="form-group">
                     <label for="coursedeliverabledesc">Program Revision Name</label>
-
-                    <input type="text" class="form-control" name="prog_rev_name" id="prog_rev_name" placeholder="Program Revision Name">
+                    <select class="custom-select rounded-0" name="prog_rev_name" id="prog_rev_name">
+                      {% for i in data9 %}
+                      <option>{{i.prog_rev_name}}</option>
+                      {% endfor %}
+                    </select>
                   </div>
                      
                    
-                  </div>
-                  <div class="form-group">
-                    <label for="coursedeliverabledesc">Program Revision Description</label>
-
-                    <input type="text" class="form-control" name="prog_rev_desc" id="prog_rev_desc" placeholder="Program Revision Description">
-                  </div>
-
-                  
-
-                  <div class="form-group">
-                    <label for="coursedeliverabledesc">Program Revision Start Date</label>
-
-                    <input type="time" class="form-control" name="prog_rev_start_dt" id="prog_rev_start_dt" placeholder="Program Revision Start Date">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="coursedeliverabledesc">Program Revision End Date</label>
-
-                    <input type="time" class="form-control" name="prog_rev_end_dt" id="prog_rev_end_dt" placeholder="Program Revision End Date">
-                  </div>
                   
                   
-
-                  <!-- <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                      </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
-                      </div>
-                    </div>
-                  </div> -->
-
                   
-
-                  <div class="form-group">
-                    <label for="exampleSelectRounded0">Program Revision Status</label>
-                    <select class="custom-select rounded-0" name="prog_rev_status" id="prog_rev_status">
-                      <option value="True">Done</option>
-                      <option value="False">Not Done</option>
-                     
-                    </select>
-                  </div>
                   <div class="card-footer">
                     <button  type="submit" class="btn btn-primary">Submit</button>
                   </div>

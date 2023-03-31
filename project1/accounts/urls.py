@@ -10,6 +10,7 @@ urlpatterns = [
     path('admin_dashboard', views.admin_dashboard, name='admin_dashboard'),
     path('student_dashboard', views.student_dashboard, name='student_dashboard'),
     path('staff_dashboard', views.staff_dashboard, name='staff_dashboard'),
+    path('final', views.final, name='final'),
     path('',include('course_deliverables.urls')),
     path('',include('C_CD_S.urls')),
     path('',include('Class.urls')),
@@ -25,4 +26,7 @@ urlpatterns = [
     path('',include('Staff.urls')),
     path('',include('TF_Min.urls')),
     path('',include('TT_Transaction.urls')),
+    path('',include('university.urls')),
+    path('',include('timetable.urls')),
+    path('',include('Final_Data.urls')),
 ]

@@ -204,6 +204,12 @@
                           <p>Program Revision</p>
                         </a>
                       </li>
+                      <li class="nav-item">
+                        <a href="{% url 'final' %}" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Final Data</p>
+                        </a>
+                      </li>
         </ul>
         
       </nav>
@@ -281,52 +287,22 @@
                       </div>
                     </div>
                   </div> -->
-                  <div class="form-group">
-                    <label for="coursedeliverabledesc">Course Code</label>
-
-                    <input type="text" class="form-control" name="course_code" id="course_code" placeholder="Course Code">
-                  </div>
+                  
 
                   <div class="form-group">
-                    <label for="coursedeliverabledesc">Course Name</label>
-
-                    <input type="text" class="form-control" name="course_name" id="course_name" placeholder="Course Name">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="coursedeliverabledesc">Course Semester</label>
-
-                    <select class="custom-select rounded-0" name="course_semester" id="course_semester">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
+                    <label for="course_name">Course Name</label>
+                    <select name="course_name" id="course_name">
+                      {% for i in data4 %}
+                      <option>{{i.course_name}}</option>
+                      {% endfor %}
                     </select>
                   </div>
 
-                  <div class="form-group">
-                    <label for="coursedeliverabledesc">Course Year</label>
-                    <select class="custom-select rounded-0" name="course_year" id="course_year">
-                      <option>FE</option>
-                      <option>SE</option>
-                      <option>TE</option>
-                      <option>BE</option>
-                      
-                    </select>
+                  
 
-                    
-                  </div>
+                  
 
-                  <div class="form-group">
-                    <label for="coursedeliverabledesc">Course Abbr</label>
-
-                    <input type="text" class="form-control" name="course_abbr" id="course_abbr" placeholder="Course Abberation">
-                  </div>
+                  
 
 
                   
@@ -346,11 +322,16 @@
                 </div>
                 /.card-body -->
 
+                <div class="card-footer">
+                  <button  type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
 
                 
               
             </div>
           </form>
+          </div>
         
           
           <div class="card">
@@ -372,7 +353,7 @@
                 
                 </thead>
                 <tbody>
-                {% for singleData in data4 %}
+                {% for singleData in data4 %} 
                 <tr>
                   <td>{{singleData.course_code}}</td>
                   <td>{{singleData.course_name}}
@@ -388,6 +369,7 @@
             </div>
             <!-- /.card-body -->
           </div>
+        </div>
 
             
   <!-- /.content-wrapper -->

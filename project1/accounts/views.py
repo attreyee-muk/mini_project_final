@@ -13,6 +13,7 @@ from . models import user_roles
 from django.http import HttpResponse
 # from django.contrib.auth.hashers import make_password
 # import hashlib 
+from university.models import University
 from . decorators import unautheticated_user
 # Create your views here.
 
@@ -20,9 +21,17 @@ user_id=1
 def home(request):
     return render(request,"index.html")
 
+def final(request):
+  return render(request,'Final_data.html')
+
 @login_required(login_url='login')
 def admin_dashboard(request):
-    return render(request,"admin_dashboard.html")
+    user_id=request.user.id
+    data_uni_name=University.objects.values_list('uni_name')
+    print(data_uni_name)
+    return render(request,"admin_dashboard.html",{
+        'data_uni_name':data_uni_name,
+    })
 
 @unautheticated_user
 def handlelogin(request):

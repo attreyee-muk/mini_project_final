@@ -204,6 +204,12 @@
                         <p>Program Revision</p>
                       </a>
                     </li>
+                    <li class="nav-item">
+                      <a href="{% url 'final' %}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Final Data</p>
+                      </a>
+                    </li>
       </ul>
       
     </nav>
@@ -251,83 +257,46 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">TT Transaction</h3>
+                <h3 class="card-title">Program</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="/prog" method="post">
-                {% csrf_token %}
-                <div class="card-body">
-
-                  
-                     
-                  
-                  <div class="form-group">
-                    <label for="coursedeliverablename">Program Name</label>
-                    <input type="text" class="form-control" name="prog_name" id="prog_name" placeholder="Program Name">
-                  </div>
-
-
-                  <div class="form-group">
-                    <label for="exampleSelectRounded0">Program Duration(in minutes)</label>
-                    <select class="custom-select rounded-0" name="prog_duration" id="prog_duration">
-                      <option>5</option>
-                      <option>10</option>
-                      <option>15</option>
-                    </select>
-                  </div>
-
-                  
-
-                  <div class="form-group">
-                    <label for="coursedeliverablename">Program Description</label>
-                    <input type="text" class="form-control" name="prog_desc" id="prog_desc" placeholder="Program Description">
-                </div>
-
-
-                   <!--
-                  </div>
-                  <div class="form-group">
-                    <label for="coursedeliverabledesc">Course Deliverable Description</label>
-
-                    <input type="text" class="form-control" name="cd_desc" id="cd_desc" placeholder="Course Deliverable Description">
-                  </div>
-                  --> 
-                  
-
-                  <!-- <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                      </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
-                      </div>
+              <div id="selection">
+                <form action="/prog" method="post">
+                  {% csrf_token %}
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="prog_name">Program Name</label>
+                      <select name="prog_name" id="prog_name">
+                        {% for i in program_set %}
+                          
+                          <option>{{i.prog_name}}</option>
+                          
+                        {% endfor %}
+                        
+                      </select>
                     </div>
-                  </div> -->
-
-                  <!--
-
+                    <div class="card-footer">
+                      <button  type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                    
+                  </div>
+                  <!-- /.card-body -->
+  
                   
-                  <div class="card-footer">
-                    <button  type="submit" class="btn btn-primary">Submit</button>
-                  </div>--> 
-                  
-                </div>
-                <!-- /.card-body -->
-
                 
-              
+              </div>
+            
+            </form>
+
             </div>
-          </form>
+              
           
-                  <p>{{singleData}}</p>
+                  
           
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">DataTable with default features</h3>
+              <h3 class="card-title">Already running programs</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -335,15 +304,18 @@
                 <thead>
                 
                 <tr>
+                  <th>Program ID</th>
                   <th>Program Name</th>
                   <th>Program Duration</th>
+                  
                   <th>Program Description</th>
                 </tr>
                 
                 </thead>
                 <tbody>
-                {% for singleData in data8 %}
+                {% for singleData in program_set %}
                 <tr>
+                  <td>{{singleData.prog_id}}</td>
                   <td>{{singleData.prog_name}}</td>
                   <td>{{singleData.prog_duration}}</td>
                   <td>{{singleData.prog_desc}}</td>

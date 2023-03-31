@@ -6,9 +6,8 @@ from .models import Course_Deliverables
 
 def course_deliverables(request):
     user_id=request.user.id
-    data6=Course_Deliverables.objects.filter(user_id_id=user_id).values()
+    data=Course_Deliverables.objects.filter(user_id_id=user_id).values()
     if request.method=='POST':
-        
         cd_name=request.POST['cd_name']
         cd_desc=request.POST['cd_desc']
         cd_duration_min=request.POST['cd_duration_min']
@@ -21,5 +20,5 @@ def course_deliverables(request):
         # print(" ",data)
         
     return render(request,'course_deliverables.html',{
-        'data6':data6,
+        'data':data,
     })

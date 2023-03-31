@@ -53,6 +53,9 @@ INSTALLED_APPS = [
     'Staff',
     'TF_Min',
     'TT_Transaction',
+    'university',
+    'timetable',
+    'Final_Data',
 
 ]
 
