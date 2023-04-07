@@ -14,4 +14,4 @@ class Final_data(models.Model):
     uni_id=models.ForeignKey(University, on_delete=models.CASCADE)
     course_id=models.ForeignKey(Course, on_delete=models.CASCADE)
     tt_id=models.ForeignKey(Timetable, on_delete=models.CASCADE)
-    
+

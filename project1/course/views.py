@@ -7,10 +7,12 @@ from Program.models import Program
 from course.models import Course
 from accounts.models import User
 from timetable.views import final_list
+from django.http import JsonResponse
 
 def cou(request):
     user_id=request.user.id
-    data4=Course.objects.all().values()
+    courses=Course.objects.values('course_name')
+    return JsonResponse({'courses':list(courses.values())})
     
     if request.method=="POST":
         # user_id=request.user.id
@@ -31,7 +33,7 @@ def cou(request):
         # en=Course(course_id=course_id,course_code=course_code,course_name=course_name,course_semester=course_semester,course_year=course_year,course_abbr=course_abbr,user_id_id=user_id)
         # en.save()
         return redirect('final_data')
-    return render(request,"course.html",{'data4':data4})
+    return render(request,"mapping.html",{'data4':data4})
 
 
 #Back to being single. I am not worthy of a relationship. You will be forever alone. You can never make anyone happy. Sadness is what you will give coz you are a sadist. 

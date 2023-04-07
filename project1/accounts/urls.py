@@ -4,6 +4,7 @@ from django.urls import path,include
 urlpatterns = [
     
     path('', views.home, name='home'),
+    path('mapping',views.mapping,name='mapping'),
     path('login', views.handlelogin, name='login'),
     path('register', views.register, name='register'),
     path('logout',views.logout,name='logout'),
@@ -11,6 +12,7 @@ urlpatterns = [
     path('student_dashboard', views.student_dashboard, name='student_dashboard'),
     path('staff_dashboard', views.staff_dashboard, name='staff_dashboard'),
     path('final', views.final, name='final'),
+    
     path('',include('course_deliverables.urls')),
     path('',include('C_CD_S.urls')),
     path('',include('Class.urls')),
@@ -29,4 +31,5 @@ urlpatterns = [
     path('',include('university.urls')),
     path('',include('timetable.urls')),
     path('',include('Final_Data.urls')),
+    path('',include('mapping.urls')),
 ]

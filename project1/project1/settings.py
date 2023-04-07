@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     'university',
     'timetable',
     'Final_Data',
-
+    'mapping',
 ]
 
 MIDDLEWARE = [

@@ -20,6 +20,8 @@ from . decorators import unautheticated_user
 user_id=1
 def home(request):
     return render(request,"index.html")
+def mapping(request):
+    return render(request,'mappings.html')
 
 def final(request):
   return render(request,'Final_data.html')
