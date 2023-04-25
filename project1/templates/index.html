@@ -22,11 +22,28 @@
     <link rel="stylesheet" href="{% static '../static/icheck-bootstrap.min.css' %}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{% static '../static/adminlte.min.css' %}">
+    <link rel="stylesheet" href="{% static '../static/style_login.css' %}">
   <link rel="stylesheet" href="{% static '../static/adminlte.min.css' %}">
 
+  <div class="container">
+    <a class="button" href="{% url 'login' %}" style="--color:#1e9bff;">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Login
+    </a>
+    <a class="button" href="{% url 'register'%}" style="--color: #ff1867;">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Register
+    </a>
+    
+  </div>
   
-  
-    <a href = "{% url 'login' %}">
+    <!-- <a href = "{% url 'login' %}">
       
 
         <button type="button" class="btn btn-primary">Login</button>
@@ -37,7 +54,7 @@
     </a>
     <a href = "{% url 'register'%}">
       <button type="button" class="btn btn-primary">Register</button>
-    </a>
+    </a> -->
    </body>
 </html>
 {% endblock %}
