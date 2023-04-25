@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'timetable',
     'Final_Data',
     'mapping',
+     'DCapp',
 ]
 
 MIDDLEWARE = [
