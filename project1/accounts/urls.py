@@ -12,7 +12,7 @@ urlpatterns = [
     path('student_dashboard', views.student_dashboard, name='student_dashboard'),
     path('staff_dashboard', views.staff_dashboard, name='staff_dashboard'),
     path('final', views.final, name='final'),
-    
+    path('',include('DCapp.urls')),
     path('',include('course_deliverables.urls')),
     path('',include('C_CD_S.urls')),
     path('',include('Class.urls')),
