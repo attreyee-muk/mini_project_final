@@ -9,4 +9,7 @@ class Timetable(models.Model):
     start_date=models.DateField()
     end_date=models.DateField()
 
+    class Meta:
+        get_latest_by='tt_id'
+
 # Create your models here.

@@ -35,7 +35,7 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <button href="{% url 'logout' %}" class="btn btn-block btn-outline-primary btn-flat">Log Out</button>
+      <a href="{% url 'logout' %}"><button  class="btn btn-block btn-outline-primary btn-flat">Log Out</button></a>
       <!-- Navbar Search -->
       <li class="nav-item">
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">
@@ -122,89 +122,40 @@
           <li class="nav-item">
                       </li>
                       <li class="nav-item">
-                        <a href="{% url 'course_deliverables' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Course Deliverables</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
                         <a href="{% url 'classs' %}" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Class</p>
                         </a>
                       </li>
-                      <li class="nav-item">
-                        <a href="{% url 'Class_Schedule'%}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Class Schedule</p>
-                        </a>
-                      </li>
+                      
                       <li class="nav-item">
                         <a href="#" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
-                          <p>Class Course</p>
+                          <p>Course</p>
                         </a>
                       </li>
-                      <li class="nav-item">
-                        <a href="{% url 'cdu' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Class Deliverables Units</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{% url 'c_cd_s' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Class Course Deliverables Staff</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{% url 'tfmin' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>TF Min</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{% url 'days' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Days</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{% url 'slot' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Slot</p>
-                        </a>
-                      </li>
+                     
                       <li class="nav-item">
                         <a href="{% url 'room' %}" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Rooms</p>
                         </a>
                       </li>
-                      <li class="nav-item">
-                        <a href="{% url 'tt_tra' %}" class="nav-link"><!---TT-Tranaction-->
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>TT Transaction</p>
-                        </a>
-                      </li>
+                      
                       <li class="nav-item">
                         <a href="{% url 'staff' %}" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Staff</p>
                         </a>
                       </li>
+                      
                       <li class="nav-item">
                         <a href="{% url 'prog' %}" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Program</p>
                         </a>
                       </li>
-                      <li class="nav-item">
-                        <a href="{% url 'prev' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Program Revision</p>
-                        </a>
-                      </li>
+                      
                       <li class="nav-item">
                         <a href="{% url 'final' %}" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
@@ -232,7 +183,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
+             
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -248,13 +199,23 @@
         
       </div><!-- /.container-fluid -->
     </section>
-
+    <form action="{% url 'rows_rooms' %}" method="POST">
+      {% csrf_token %}
+      <div class="input-group mb-3" style="margin:20px">
+        <label class="form-label">Number of Rooms</label>
+        <input type="number" id="rows_rooms" name="rows_rooms" style="margin:2px" >
+        <br>
+        <button class="btn btn-outline-secondary" style="margin:2px" type="submit" >Go!</button>
+      </div>
+    </form>
     <!-- Main content -->
+    <form action="/room" method="post">
+      {% csrf_token %}
     <section class="content">
       <div class="container-fluid">
         <div class="row">
           <!-- left column -->
-          <div class="col-md-6">
+          <div class="col-md-8">
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
@@ -262,36 +223,45 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="/room" method="post">
-                {% csrf_token %}
+              
                 <div class="card-body">
 
                   <div class="form-group">
-                    <label for="coursedeliverabledesc">Room Description</label>
+                    <label for="room_number">Room Number</label>
+
+                    <input type="tnumber" class="form-control" name="room_number" id="room_number" placeholder="Room Number">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="room_desc">Room Description</label>
 
                     <input type="text" class="form-control" name="room_desc" id="room_desc" placeholder="Room Description">
                   </div>
                      
                    
-                  </div>
+                  
                   <div class="form-group">
-                    <label for="coursedeliverabledesc">Room Label Abbreviation</label>
+                    <label for="room_label_abbr">Room Label Abbreviation</label>
 
-                    <input type="text" class="form-control" name="room_label_abbr" id="prog_rev_desc" placeholder="Program Revision Description">
+                    <input type="text" class="form-control" name="room_label_abbr" id="room_label_abbr" placeholder="Room Label Abbreviation">
                   </div>
 
                   
 
                   <div class="form-group">
-                    <label for="coursedeliverabledesc">Room Seating Capacity</label>
+                    <label for="room_seating_cap">Room Seating Capacity</label>
 
-                    <input type="time" class="form-control" name="room_seating_cap" id="room_seating_cap" placeholder="Program Revision Start Date">
+                    <input type="number" class="form-control" name="room_seating_cap" id="room_seating_cap" placeholder="Program Revision Start Date">
                   </div>
 
                   <div class="form-group">
-                    <label for="coursedeliverabledesc">Room type</label>
+                    <label for="room_type">Room type</label>
+                    <select>
+                      <option>Classroom</option>
+              
+                    </select>
 
-                    <input type="time" class="form-control" name="room_type" id="room_type" placeholder="Program Revision End Date">
+        
                   </div>
                   
                   
@@ -315,45 +285,71 @@
                   
                 </div>
                 <!-- /.card-body -->
-
-                
-              
             </div>
-          </form>
+          </div>
+        </div>
+      </section>
+      <div class="col-md-8">
+        <div class="card-footer">
+          <button  type="submit" class="btn btn-primary">Enter in the table</button>
+          
+          
+
+
+        </div>
+      </div>
+
+    </form>
+    <div class="col-md-8">
+      <div class="card-footer">
+        <a href="{% url 'staff' %}">
+          <button  type="submit" class="btn btn-primary">Use already entered values and enter staff data</button>
+        </a>
+      </div>
+      
+    </div>
+
+    
+            
+          
           
                   <p>{{singleData}}</p>
-          
+          <div class="col-md-8">
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">DataTable with default features</h3>
             </div>
             <!-- /.card-header -->
-            <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                
-                <tr>
-                  <th>Room Description</th>
-                  <th>Room Label Abbreviation</th>
-                  <th>Room Seating Capacity</th>
-                  <th>Room Type</th>
-                </tr>
-                
-                </thead>
-                <tbody>
-                {% for singleData in data10 %}
-                <tr>
-                  <td>{{singleData.room_desc}}</td>
-                  <td>{{singleData.room_label_abbr}}
-                  </td>
-                  <td>{{singleData.room_seating_cap}}</td>
-                  <td>{{singleData.room_type}}</td>
-                </tr>
-                {% endfor %}
-                
-                </tfoot>
-              </table>
+            
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  
+                  <tr>
+                    <th>Room Description</th>
+                    <th>Room Label Abbreviation</th>
+                    <th>Room Seating Capacity</th>
+                    <th>Room Type</th>
+                  </tr>
+                  
+                  </thead>
+                  <tbody>
+                  {% for singleData in data10 %}
+                  <tr>
+                    <td>{{singleData.room_desc}}</td>
+                    <td>{{singleData.room_label_abbr}}
+                    </td>
+                    <td>{{singleData.room_seating_cap}}</td>
+                    <td>{{singleData.room_type}}</td>
+                  </tr>
+                  {% endfor %}
+                  
+                  </tfoot>
+                </table>
+              </div>
+
             </div>
+            
             <!-- /.card-body -->
           </div>
 

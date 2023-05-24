@@ -38,7 +38,7 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <button href="{% url 'logout' %}" class="btn btn-block btn-outline-primary btn-flat">Log Out</button>
+      <a href="{% url 'logout' %}"><button  class="btn btn-block btn-outline-primary btn-flat">Log Out</button></a>
       <!-- Navbar Search -->
       <li class="nav-item">
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">
@@ -202,72 +202,28 @@
             </li>
         <li class="nav-item">
                     </li>
-                    <li class="nav-item">
-                      <a href="{% url 'course_deliverables' %}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Course Deliverables</p>
-                      </a>
-                    </li>
+                   
                     <li class="nav-item">
                       <a href="{% url 'classs' %}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Class</p>
                       </a>
                     </li>
-                    <li class="nav-item">
-                      <a href="{% url 'Class_Schedule'%}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Class Schedule</p>
-                      </a>
-                    </li>
+                   
                     <li class="nav-item">
                       <a href="#" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Class Course</p>
+                        <p>Course</p>
                       </a>
                     </li>
-                    <li class="nav-item">
-                      <a href="{% url 'cdu' %}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Class Deliverables Units</p>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="{% url 'c_cd_s' %}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Class Course Deliverables Staff</p>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="{% url 'tfmin' %}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>TF Min</p>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="{% url 'days' %}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Days</p>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="{% url 'slot' %}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Slot</p>
-                      </a>
-                    </li>
+                    
                     <li class="nav-item">
                       <a href="{% url 'room' %}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Rooms</p>
                       </a>
                     </li>
-                    <li class="nav-item">
-                      <a href="{% url 'tt_tra' %}" class="nav-link"><!---TT-Tranaction-->
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>TT Transaction</p>
-                      </a>
-                    </li>
+
                     <li class="nav-item">
                       <a href="{% url 'staff' %}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
@@ -280,12 +236,7 @@
                         <p>Program</p>
                       </a>
                     </li>
-                    <li class="nav-item">
-                      <a href="{% url 'prev' %}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Program Revision</p>
-                      </a>
-                    </li>
+                   
                     <li class="nav-item">
                       <a href="{% url 'final' %}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
@@ -313,12 +264,13 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">DataTables</li>
+
             </ol>
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
+    <!--
 <div class="input-group mb-3" style="margin:20px">
   <label class="form-label">Number of Courses</label>
   <input type="number" id="rows_courses" style="margin:2px" >
@@ -327,7 +279,7 @@
   <input type="number" id="rows_classes" style="margin:2px" >
   <button class="btn btn-outline-secondary" style="margin:2px" type="button" id="rows_classes" onclick="rows_courses()">Go!</button>
   
-</div>
+</div>-->
 
 
 
@@ -336,55 +288,147 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">DataTable with minimal features & hover style</h3>
-              </div>
-              <button class="btn btn-outline-secondary" style="margin:2px" type="button" id="insert" onclick="insert()">Insert Data</button>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="example2" class="table table-bordered table-hover">
-                  <thead>
-                  <tbody>
-                    <th>Class</th>
-                    <th>Course</th>
+            <form action="/mapping1" method="post">
+              {% csrf_token %}
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                
+                <tr>
+                  <th>Course</th>
+                  <th>Class</th>
+                  <th>Room</th>
+                  <th>Staff</th>
+                  <th>Time Frame</th>
+                </tr>
+                
+                </thead>
+                
+  
+                 
+                <tbody>
+                  
+                  <!-- <tr> 
+                    <td><select name='text' id='Course'>{% for i in courses %}<option>{{i.course_name}}</option>{% endfor %}</td>
+                    <td><select name='Class' id='Class'>{% for i in classes %}<option>{{i.class_name}}</option>{% endfor %}</td>
+                    
+            
+                    <td><select  name='Room' id='Room' >{% for i in rooms %}<option>{{i.room_id}}</option>{% endfor %}</td>
+                    <td><select name='Staff' id='Staff' >{% for i in staff %}<option>{{i.staff_name}}</option>{% endfor %}</td>
+                    <td><select name='Time' id='Time'>
+                      <option value="1">1 hour</option>
+                      <option value="2">2 hours</option>
+  
+                    </td>
+                  </tr> -->
+  
+                  <tr> 
+                    <td><select name='course_data' id='course_data' class='form-control input_data'>
+                      {% for i in courses %}'<option>{{i.course_name}}</option>
+                      {% endfor %}
+                    </select>  </td>
 
-                    <th>Room</th>
-                    <th>Staff</th>
-                    <th>Time</th>
+                    <td><select name='class_data' id='class_data' class='form-control input_data'>
+                      {% for i in classes %}'<option>{{i.class_name}}</option>
+                      {% endfor %}
+                    </select> </td>
+                    
+            
+                    <td><select name='room_data' id='room_data' class='form-control input_data'>
+                      {% for i in rooms %}<option>{{i.room_number}}</option>
+                      {% endfor %}
+                    </select> </td>
+                    <td><select name='staff_data' id='staff_data' class='form-control input_data'>
+                      {% for i in staff %}<option>{{i.staff_name}}</option>
+                      {% endfor %}
+                    </select> </td>
+                    <td><select name='time_data' id='time_data'>
+                        <option value="1">1</option>
+                    </td>
+                  </tr>
                   
-                  </tbody>
-                  <tbody id="data">
-
-                  </tbody>
-                  <!-- <tr>
-                    <td></td>
-                    <td>
-                    <div><button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Separated link</a></li>
-                      </ul></div>
-                    </td> -->
-                  <!-- </tr> -->
-                  </thead>
-                  
-                  
-                  
-                </table>
+                </tbody>
+              </table>
+              <div class="col-md">
+                <div class="card">
+                  <button  type="submit" class="btn btn-primary">Enter in the table</button>
+                </div>
               </div>
-              <!-- /.card-body -->
+            </form>
+
+            <form action="{% url 'generate_timetable' %}" method="post">
+              {% csrf_token %}
+              <div class="col-md">
+              <div class="card">
+              <button type="submit" class="btn btn-primary">Generate Timetable</button>
+              <div class="card-footer">
+                <button  type="submit" class="btn btn-primary">Next</button>
+              </div>
+
+              </div>
+            </form>
             </div>
-            <!-- /.card -->
+          </div>
+          </div>
+          <div class="col-md">
+            <div class="card">
+            
+              <div class="card-header">
+              <h3 class="card-title">Already entered values</h3>
+              </div>
+              <!-- /.card-header -->
+              
+                <div class="card-body">
+                  <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                    
+                    <tr style="text-align:center">
+                      <th>Course</th>
+                      <th>Class</th>
+                      <th>Room</th>
+                      <th>Staff</th>
+                      <th>Time</th>
+                    </tr>
+                    
+                    </thead>
+                    <tbody>
+                      {% for singleData in data %} 
+                      <tr>
+                        <td>{{singleData.course_data}}</td>
+                        <td>{{singleData.class_data}}</td>
+                        <td>{{singleData.room_data}}</td>
+                        <td>{{singleData.staff_data}}</td>
+                        <td>{{singleData.time_data}}</td>
+                      </tr>
+                      {% endfor %}
+                      
+                      </tfoot>
+                    </table>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+              </div>
+              
+              </div>
+          </div>
+            
+                
+              
+
+                    
+                  </div>
+              </div>
+              
+              </div>
+              </div>
+            
+
+            
 
             
   <!-- /.content-wrapper -->
   
   <!-- /.control-sidebar -->
-</div>
+
 <!-- ./wrapper -->
 
 <!-- jQuery -->
@@ -421,15 +465,16 @@
     for (var i = 0; i < rows_courses_count*rows_classes_count; i++) {
 
       document.getElementById('data').innerHTML+=
-        "<tr>" +
+      "<tr>" +
         "<td><input type='text' name='Class' id='Class["+ i +"]' class='form-control input_data' placeholder='Class'></td>"+
-        "<td><input type='text' name='Course' id='Course["+ i +"]' class='form-control input_data' placeholder='Course'></td>"+ 
-        
+        "<td><select name='text' id='Course["+ i +"]'>'{% for i in courses %}'<option>{{i.course_name}}</option>'{% endfor %}</td>"+ 
         "<td><input type='number' name='Room' id='Room["+ i +"]' class='form-control input_data' placeholder='Room Number'></td>"+
         "<td><input type='text' name='Staff' id='Staff["+ i +"]' class='form-control input_data' placeholder='Staff'></td>"+
         "<td><input type='number' name='Time' id='Time["+ i +"]' class='form-control input_data' placeholder='Time Frame in Hours'></td>"+
         '</tr>'; 
-      }
+      
+        } 
+      
     };
 
     function getCookie(name) {
@@ -458,7 +503,7 @@
       });
       $("tr").each(function(){
       var course=$(this).children().eq(1).text()
-      var classs=$(this).children().eq(0).text()
+      var classs=$(this).children().eq(0).val()
       var room=$(this).children().eq(2).text()
       var staff=$(this).children().eq(3).text()
       var tf=$(this).children().eq(4).text()

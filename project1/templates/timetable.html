@@ -34,7 +34,7 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <button href="{% url 'logout' %}" class="btn btn-block btn-outline-primary btn-flat">Log Out</button>
+      <a href="{% url 'logout' %}"><button  class="btn btn-block btn-outline-primary btn-flat">Log Out</button></a>
       <!-- Navbar Search -->
       <li class="nav-item">
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">
@@ -111,105 +111,46 @@
             <ul class="nav nav-treeview">
   
               <li class="nav-item">
-                <a href="./index.html" class="nav-link active">
+                <a href="{% url 'classs' %}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v1</p>
+                  <p>Class</p>
                 </a>
-                <li class="nav-item">
-                  
               </li>
-          <li class="nav-item">
-                      </li>
-                      <li class="nav-item">
-                        <a href="{% url 'course_deliverables' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Course Deliverables</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{% url 'classs' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Class</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{% url 'Class_Schedule'%}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Class Schedule</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Class Course</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{% url 'cdu' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Class Deliverables Units</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{% url 'c_cd_s' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Class Course Deliverables Staff</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{% url 'tfmin' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>TF Min</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{% url 'days' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Days</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{% url 'slot' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Slot</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{% url 'room' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Rooms</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{% url 'tt_tra' %}" class="nav-link"><!---TT-Tranaction-->
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>TT Transaction</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{% url 'staff' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Staff</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{% url 'prog' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Program</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{% url 'prev' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Program Revision</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{% url 'final' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Final Data</p>
-                        </a>
-                      </li>
+              
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Course</p>
+                </a>
+              </li>
+             
+              <li class="nav-item">
+                <a href="{% url 'room' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Rooms</p>
+                </a>
+              </li>
+              
+              <li class="nav-item">
+                <a href="{% url 'staff' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Staff</p>
+                </a>
+              </li>
+              
+              <li class="nav-item">
+                <a href="{% url 'prog' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Program</p>
+                </a>
+              </li>
+              
+              <li class="nav-item">
+                <a href="{% url 'final' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Final Data</p>
+                </a>
+              </li>
         </ul>
         
       </nav>
@@ -231,7 +172,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
+             
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -250,8 +191,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">General Form</li>
+             
             </ol>
           </div>
         </div>

@@ -9,14 +9,21 @@ from accounts.models import User
 # Create your models here.
 
 class Class(models.Model):
+  tt_id=models.IntegerField()
   user_id=models.ForeignKey(User, on_delete=models.CASCADE)
   class_id=models.AutoField(primary_key=True)
   class_name=models.CharField(max_length=100)
   class_desc=models.CharField(max_length=100)
   class_parent_id=models.IntegerField()
-  prog_rev_id=models.IntegerField()#ForeignKey
-  prog_rev_id=models.ForeignKey(Program_Revision,null=True,on_delete=models.CASCADE)
+  # prog_rev_id=models.IntegerField()#ForeignKey
+  # prog_rev_id=models.ForeignKey(Program_Revision,null=True,on_delete=models.CASCADE)
   
   prog_id=models.ForeignKey(Program,null=True,on_delete=models.CASCADE)
   course_semester=models.IntegerField()
+
+class new_Class_model(models.Model):
+  user_id=models.ForeignKey(User, on_delete=models.CASCADE)
+  no_classes_id=models.AutoField(primary_key=True)
+  no_classes=models.IntegerField() 
+  tt_id=models.IntegerField()
 

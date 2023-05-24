@@ -23,7 +23,7 @@
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="{% url'admin_dashboard' %}" class="nav-link">Home</a>
+      <a href="{% url 'admin_dashboard' %}" class="nav-link">Home</a>
     </li>
     
     <li class="nav-item d-none d-sm-inline-block">
@@ -34,7 +34,7 @@
 
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
-    <button href="{% url 'logout' %}" class="btn btn-block btn-outline-primary btn-flat">Log Out</button>
+    <a href="{% url 'logout' %}"><button  class="btn btn-block btn-outline-primary btn-flat">Log Out</button></a>
     <!-- Navbar Search -->
     <li class="nav-item">
       <a class="nav-link" data-widget="navbar-search" href="#" role="button">
@@ -74,7 +74,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
-  <a href="{% url'admin_dashboard' %}" class="brand-link">
+  <a href="{% url 'admin_dashboard' %}" class="brand-link">
     <!-- <img src="{% static 'dist/img/AdminLTELogo.png'  %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
     <span class="brand-text font-weight-light">TimeTable Management</span>
   </a>
@@ -111,7 +111,7 @@
           <ul class="nav nav-treeview">
 
             <li class="nav-item">
-              <a href="{% url'admin_dashboard' %}" class="nav-link active">
+              <a href="{% url 'admin_dashboard' %}" class="nav-link active">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Dashboard v1</p>
               </a>
@@ -120,90 +120,42 @@
             </li>
         <li class="nav-item">
                     </li>
-                    <li class="nav-item">
-                      <a href="{% url 'course_deliverables' %}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Course Deliverables</p>
-                      </a>
-                    </li>
+                   
                     <li class="nav-item">
                       <a href="{% url 'classs' %}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Class</p>
                       </a>
                     </li>
-                    <li class="nav-item">
-                      <a href="{% url 'Class_Schedule'%}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Class Schedule</p>
-                      </a>
-                    </li>
+                    
                     <li class="nav-item">
                       <a href="#" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Class Course</p>
+                        <p>Course</p>
                       </a>
                     </li>
-                    <li class="nav-item">
-                      <a href="{% url 'cdu' %}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Class Deliverables Units</p>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="{% url 'c_cd_s' %}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Class Course Deliverables Staff</p>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="{% url 'tfmin' %}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>TF Min</p>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="{% url 'days' %}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Days</p>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="{% url 'slot' %}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Slot</p>
-                      </a>
-                    </li>
+                   
                     <li class="nav-item">
                       <a href="{% url 'room' %}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Rooms</p>
                       </a>
                     </li>
-                    <li class="nav-item">
-                      <a href="{% url 'tt_tra' %}" class="nav-link"><!---TT-Tranaction-->
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>TT Transaction</p>
-                      </a>
-                    </li>
+                    
                     <li class="nav-item">
                       <a href="{% url 'staff' %}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Staff</p>
                       </a>
                     </li>
+
                     <li class="nav-item">
                       <a href="{% url 'prog' %}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Program</p>
                       </a>
                     </li>
-                    <li class="nav-item">
-                      <a href="{% url 'prev' %}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Program Revision</p>
-                      </a>
-                    </li>
+                    
                     <li class="nav-item">
                       <a href="{% url 'final' %}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
@@ -231,7 +183,7 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Dashboard v1</li>
+            
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -247,13 +199,24 @@
         
       </div><!-- /.container-fluid -->
     </section>
-
+    <form action="{% url 'rows_staff' %}" method="POST">
+      {% csrf_token %}
+      <div class="input-group mb-3" style="margin:20px">
+        <label class="form-label">Number of Staff</label>
+        <input type="number" id="rows_staff" name="rows_staff" style="margin:2px" >
+        <br>
+        <button class="btn btn-outline-secondary" style="margin:2px" type="submit" >Go!</button>
+      </div>
+    </form>
+    
     <!-- Main content -->
+    <form action="/staff" method="post">
+      {% csrf_token %}
     <section class="content">
       <div class="container-fluid">
         <div class="row">
           <!-- left column -->
-          <div class="col-md-6">
+          <div class="col-md-8">
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
@@ -261,21 +224,20 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="/staff" method="post">
-                {% csrf_token %}
+              
                 <div class="card-body">
 
                   
                      
                   
                   <div class="form-group">
-                    <label for="coursedeliverablename">Staff Name</label>
+                    <label for="staff_name">Staff Name</label>
                     <input type="text" class="form-control" name="staff_name" id="staff_name" placeholder="Name of Staff">
 
                    
                   </div>
                   <div class="form-group">
-                    <label for="coursedeliverabledesc">Staff Abbreviation</label>
+                    <label for="staff_abbr">Staff Abbreviation</label>
 
                     <input type="text" class="form-control" name="staff_abbr" id="staff_abbr" placeholder="Abbreviation of Staff">
                   </div>
@@ -304,9 +266,7 @@
                       <option>False</option>
                     </select>
                   </div>
-                  <div class="card-footer">
-                    <button  type="submit" class="btn btn-primary">Submit</button>
-                  </div> 
+                  
                   
                 </div>
                 <!-- /.card-body -->
@@ -314,11 +274,30 @@
                 
               
             </div>
+            </div>
+            </div>
+            </div>
+            </section>
+            <div class="col-md-8">
+              <div class="card-footer">
+                <button  type="submit" class="btn btn-primary">Submit</button>
+                
+
+              </div>
+            </div>
+             
           </form>
+          <div class="col-md-8">
+            <div class="card-footer">
+              <a href="{% url 'DCapp' %}">
+                <button  type="submit" class="btn btn-primary">Use already entered values and enter number of days and periods</button>
+              </a>
+            </div>
+          </div>
           
                   
-          
-          <div class="card">
+          <div class="col-md-8">
+            <div class="card">
             <div class="card-header">
               <h3 class="card-title">DataTable with default features</h3>
             </div>
@@ -328,19 +307,19 @@
                 <thead>
                 
                 <tr>
-                  <th>Course Deliverable Name</th>
-                  <th>Course Deliverable Description</th>
-                  <th>Course Deliverable Minimum Duration</th>
+                  <th>Staff Name</th>
+                  <th>Staff Abbreviation</th>
+                  <th>Staff Status</th>
                 </tr>
                 
                 </thead>
                 <tbody>
-                {% for singleData in data %}
+                {% for singleData in data12 %}
                 <tr>
-                  <td>{{singleData.cd_name}}</td>
-                  <td>{{singleData.cd_desc}}
+                  <td>{{singleData.staff_name}}</td>
+                  <td>{{singleData.staff_abbr}}
                   </td>
-                  <td>{{singleData.cd_duration_min}}</td>
+                  <td>{{singleData.staff_status}}</td>
                 </tr>
                 {% endfor %}
                 
@@ -350,6 +329,8 @@
             <!-- /.card-body -->
           </div>
 
+          </div>
+          
             
   <!-- /.content-wrapper -->
   

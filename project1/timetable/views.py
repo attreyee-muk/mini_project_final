@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from .models import Timetable
 
 # Create your views here.
-final_list={'tt_id':1,'prog_id':1}
+final_list={'tt_id':1,'prog_id':1,'no_courses':0,'no_classes':0}
 print(final_list)
 
 def time_table(request):

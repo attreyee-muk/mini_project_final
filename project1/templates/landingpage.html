@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content=
+        "width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/landpage.css' %}">
+    <title>Landing Page</title>
+</head>
+  
+<body>
+    <nav>
+        <div class="heading">TimeTable Management System</div>
+        <span class="sideMenuButton" 
+            onclick="openNavbar()">
+        </span>
+  
+        <div class="navbar-button">
+            <ul>
+                <li><a href="{% url 'login' %}">LOGIN</a></li>
+                <li><a href="{% url 'register' %}">REGISTER</a></li>
+            </ul>
+        </div>
+    </nav>
+  
+    <!-- Side navigation bar for 
+        responsive website -->
+    <div class="sideNavigationBar" 
+        id="sideNavigationBar">
+        <a href="#" class="closeButton" 
+            onclick="closeNavbar()">
+        </a>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Sign Up</a>
+    </div>
+  
+    <!-- Content -->
+    <div class="line" id="Home">
+        <div class="side1">
+            <br>
+            <br>
+            <h1>Time-O</h1>
+            <!-- <p>Presenting to you, the best time table generator in the world!</p> -->
+        </div>
+        <div class="side2">
+            <br>
+            <br>
+            <br>
+            <img src="{% static 'timetable_image.jpg' %}" width="600">
+        </div>
+    </div>
+  
+    <section class="about" id="My Projects">
+        <div class="content">
+            <br><br><br><br>
+            <div class="title">
+                <span>FEATURES</span>
+            </div>
+            <div class="boxes">
+                <div class="box">
+                    <div class="topic">
+                        <a href="" target="_blank">
+                            ACCURATE
+                        </a>
+                    </div>
+                    <p>
+                        Time-O takes pride in its delivery of the fittest timetables. 
+                        High fitness of the timetables is ensured by the implementation 
+                        of backtracking algorithm as a screening process.
+                    </p>
+                </div>
+                <div class="box">
+  
+                    <div class="topic">
+                        <a href="" target="_blank">
+                            FAST PACED
+                        </a>
+                    </div>
+                    <p>
+                        Time-O generates you the most efficient timetable in the least time and also it eliminates any constraints that may
+                        be generated while creation with the use of Genetic algorithms.
+                    </p>
+                </div>
+  
+                <div class="box">
+                    <div class="topic">
+                        <a href="" target="_blank">
+                            USER FRIENDLY
+                        </a>
+                    </div>
+                    <p>
+                        We believe that the main aim of a timetable generator is to be convenient. 
+                        Keeping this in mind, we have focused on creating a generator which is easy to use and implement.
+                    </p>
+                </div>
+            </div>
+            <div>
+                <br>
+                <br>
+            </div>
+        </div>
+    </section>
+    <script src="{% static '/landpage.js' %}"></script>
+</body>
+  
+</html>

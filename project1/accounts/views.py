@@ -2,6 +2,7 @@
 # import email
 # from django.forms import PasswordInput
 from django.shortcuts import render
+from django.conf import settings
 from django.contrib.auth.models import User,auth
 from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.forms import AuthenticationForm
@@ -15,13 +16,26 @@ from django.http import HttpResponse
 # import hashlib 
 from university.models import University
 from . decorators import unautheticated_user
+from Class.models import Class
+from Class.models import new_Class_model
+from timetable.models import Timetable
+from course.models import Course
+from course.models import new_Course_model
+from Staff.models import Staff
+from Room.models import Room
 # Create your views here.
 
 user_id=1
 def home(request):
-    return render(request,"index.html")
+    return render(request,"landingpage.html")
+
 def mapping(request):
-  return render(request,'mappings.html')
+  courses=Course.objects.filter(user_id_id=user_id)
+  classes=Class.objects.filter(user_id_id=user_id)
+  rooms=Room.objects.filter(user_id_id=user_id)
+  staff=Staff.objects.filter(user_id_id=user_id)
+
+  return render(request,'mappings.html',{'courses':courses,'classes':classes, 'rooms':rooms, 'staff':staff})
 
 def final(request):
   return render(request,'Final_data.html')
@@ -30,6 +44,7 @@ def final(request):
 def admin_dashboard(request):
     user_id=request.user.id
     data_uni_name=University.objects.values_list('uni_name')
+    
     print(data_uni_name)
     return render(request,"admin_dashboard.html",{
         'data_uni_name':data_uni_name,

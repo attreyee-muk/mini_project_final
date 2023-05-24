@@ -34,7 +34,7 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <button href="{% url 'logout' %}" class="btn btn-block btn-outline-primary btn-flat">Log Out</button>
+      <a href="{% url 'logout' %}"><button  class="btn btn-block btn-outline-primary btn-flat">Log Out</button></a>
       <!-- Navbar Search -->
       <li class="nav-item">
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">
@@ -121,89 +121,40 @@
           <li class="nav-item">
                       </li>
                       <li class="nav-item">
-                        <a href="{% url 'course_deliverables' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Course Deliverables</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
                         <a href="{% url 'classs' %}" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Class</p>
                         </a>
                       </li>
-                      <li class="nav-item">
-                        <a href="{% url 'Class_Schedule'%}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Class Schedule</p>
-                        </a>
-                      </li>
+                      
                       <li class="nav-item">
                         <a href="#" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
-                          <p>Class Course</p>
+                          <p>Course</p>
                         </a>
                       </li>
-                      <li class="nav-item">
-                        <a href="{% url 'cdu' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Class Deliverables Units</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{% url 'c_cd_s' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Class Course Deliverables Staff</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{% url 'tfmin' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>TF Min</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{% url 'days' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Days</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{% url 'slot' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Slot</p>
-                        </a>
-                      </li>
+                     
                       <li class="nav-item">
                         <a href="{% url 'room' %}" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Rooms</p>
                         </a>
                       </li>
-                      <li class="nav-item">
-                        <a href="{% url 'tt_tra' %}" class="nav-link"><!---TT-Tranaction-->
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>TT Transaction</p>
-                        </a>
-                      </li>
+                      
                       <li class="nav-item">
                         <a href="{% url 'staff' %}" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Staff</p>
                         </a>
                       </li>
+                      
                       <li class="nav-item">
                         <a href="{% url 'prog' %}" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Program</p>
                         </a>
                       </li>
-                      <li class="nav-item">
-                        <a href="{% url 'prev' %}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Program Revision</p>
-                        </a>
-                      </li>
+                      
                       <li class="nav-item">
                         <a href="{% url 'final' %}" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
@@ -231,7 +182,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
+             
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -246,7 +197,7 @@
 }
 </style>
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div >
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
@@ -254,17 +205,22 @@
           <div class="col-sm-6">
             <h1>General Form</h1>
           </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">General Form</li>
-            </ol>
-          </div>
+          
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
+    <form action="{% url 'rows_classes' %}" method="post">
+      {% csrf_token %}
+      <div class="input-group col-md" >
+        <label class="form-label">Number of Classes</label>
+        <input type="number" id="rows_classes" name="rows_classes" style="margin:2px" >
+        <br>
+        <button class="btn btn-outline-secondary" style="margin:2px" type="submit" >Go!</button>
+      </div>
+    </form>
     <!-- Main content -->
+    <form action="/classs" method="POST">
+      {% csrf_token %}
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -277,14 +233,15 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="/classs" method="post">
-                {% csrf_token %}
+              
+
+              
                 <div class="card-body">
 
                   <div class="form-group">
-                    <label for="coursedeliverabledesc">Class Name</label>
+                    <label for="class name">Class Name</label>
 
-                    <input type="text" class="form-control" name="class_name" id="class_name" placeholder="Course Deliverable Description">
+                    <input type="text" class="form-control" name="class_name" id="class_name" placeholder="Class Name">
                   </div>
                   
 
@@ -304,13 +261,13 @@
                   <div class="form-group">
                     <label for="coursedeliverabledesc">Class Description</label>
 
-                    <input type="text" class="form-control" name="class_desc" id="class_desc" placeholder="Course Deliverable Description">
+                    <input type="text" class="form-control" name="class_desc" id="class_desc" placeholder="Class Description">
                   </div>
 
                   <div class="form-group">
                     <label for="coursedeliverabledesc">Class Parent Id</label>
 
-                    <input type="number" class="form-control" name="class_parent_id" id="class_parent_id" placeholder="Course Deliverable Description">
+                    <input type="number" class="form-control" name="class_parent_id" id="class_parent_id" placeholder="Class Parent ID">
                   </div>
 
                   
@@ -330,9 +287,7 @@
                       
                     </select>
                   </div>
-                  <div class="card-footer">
-                    <button  type="submit" class="btn btn-primary">Submit</button>
-                  </div>
+                  
                   
                 </div>
                 <!-- /.card-body -->
@@ -340,7 +295,26 @@
                 
               
             </div>
-          </form>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+  <div>
+    <div class="card-footer " >
+      <button  type="submit" class="btn btn-primary">Submit</button>
+      
+    </div>
+  </div>
+  
+</form>
+<div >
+  <div class="card-footer">
+    <a href="{% url 'room' %}"><button  type="submit" class="btn btn-primary">Use already entered values and enter rooms data</button></a>
+  </div>
+</div>
+
+
           
                   <p>{{singleData}}</p>
           

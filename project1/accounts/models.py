@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from Program.models import Program
 from university.models import University
-from course.models import Course
+from course.models import new_Course
 from timetable.models import Timetable
 from TF_Min.models import TF_Min
 from Program_Revision.models import Program_Revision

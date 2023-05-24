@@ -9,5 +9,7 @@ class Mapping(models.Model):
     room_data=models.IntegerField()
     staff_data=models.CharField(max_length=150)
     time_data=models.IntegerField()
+    tt_id=models.IntegerField()
+    mapping_id=models.AutoField(primary_key=True)
 
     

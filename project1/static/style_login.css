@@ -67,7 +67,7 @@ header .overlay {
   background:#333 center no-repeat;
   background-size: cover;
   z-index: 0;
-  opacity: 0;  -webkit-filter: blur(4px);
+  opacity: 0;  
 }
 img{
   margin-right:20px
